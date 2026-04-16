@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@300;400;500;700&amp;family=Playfair+Display:ital,wght@1,400;1,700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        function moveCarousel(sliderId, direction, prevId, nextId) {
+            const slider = document.getElementById(sliderId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+            const items = slider.querySelectorAll('.portfolio-item, [class*="snap-start"]');
+            let currentIndex = parseInt(slider.getAttribute('data-index') || '0');
+
+            let newIndex = currentIndex + direction;
+
+            if (newIndex >= 0 && newIndex < items.length) {
+                const itemWidth = items[0].offsetWidth + (direction !== 0 ? 16 : 0); // width + gap
+                slider.scrollTo({
+                    left: newIndex * itemWidth,
+                    behavior: 'smooth'
+                });
+                slider.setAttribute('data-index', newIndex);
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+        }
+
+        .signature-frame {
+            border: 0.5px solid #ffffff;
+            padding: 24px;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Mobile Active State for Portfolio */
+        .portfolio-item-active img {
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+
+        .disabled-nav-btn {
+            opacity: 0.2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="font-body selection:bg-primary selection:text-on-primary overflow-x-hidden">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 rounded-none bg-[#131313]/90 backdrop-blur-xl border-b border-white/10 flex justify-between items-center px-6 lg:px-8 py-4 lg:py-6">
+        <div class="text-xl lg:text-2xl font-black tracking-tighter text-white uppercase font-headline">
+            <h2>Artistika Tattoo</h2>
+        </div>
+        
+        <button
+            class="hidden lg:block bg-transparent border border-white text-white font-headline font-bold tracking-tighter uppercase px-6 py-2 hover:bg-white hover:text-black transition-all duration-300 active:scale-95">Prendre rendez-vous</button>
+    </nav>
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <img alt="Studio atmosphere" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50"
+            src="Hero.png" />
+        <div class="relative z-10 text-center px-6">
+            <h1
+                class="font-headline text-5xl md:text-8xl lg:text-[12rem] font-black tracking-tighter text-white leading-none mb-6">
+                Artistika Tattoo</h1>
+            <p
+                class="font-body text-sm md:text-xl lg:text-2xl uppercase tracking-[0.2em] md:tracking-[0.3em] text-white/80 mb-12 max-w-2xl mx-auto">
+                Tatouage · Piercing &amp; vente de bijoux · Saint-Louis, La Réunion</p>
+            <a class="inline-block border border-white px-8 md:px-12 py-4 text-white font-headline font-bold tracking-tighter uppercase hover:bg-white hover:text-black transition-all duration-300"
+                href="#booking">
+                PRENDRE RENDEZ-VOUS
+            </a>
+        </div>
+        <div class="absolute bottom-20 md:bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+            <span class="material-symbols-outlined text-white text-4xl">expand_more</span>
+        </div>
+    </header>
+    <!-- About Section -->
+    <section class="py-24 md:py-32 px-6 lg:px-8 bg-surface" id="about">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div class="relative order-2 md:order-1">
+                <div class="signature-frame">
+                    <img alt="Studio Interior" class="w-full aspect-[4/5] object-cover grayscale"
+                        src="Shop.jpg" />
+                </div>
+            </div>
+            <div class="space-y-8 md:space-y-12 order-1 md:order-2">
+                <h2 class="font-headline text-4xl md:text-5xl font-black uppercase tracking-tighter leading-tight">Votre Studio de Tatouage <br /><span
+                        class="font-serif italic capitalize text-3xl md:text-4xl tracking-normal font-normal">à Saint-Louis, La Réunion</span></h2>
+                <div class="space-y-6 text-on-surface-variant text-base md:text-lg leading-relaxed max-w-lg">
+                    <p>Bienvenue chez Artistika Tattoo, votre studio de tatouage à Saint-Louis, La Réunion. Débutant ou passionné, notre équipe crée des tatouages sur mesure uniques pensés avec vous, ainsi qu'une sélection de flashs disponibles immédiatement. Nous proposons également le piercing professionnel et une boutique de bijoux pour sublimer votre style.
+</p>
+                    <p>Facilement accessible depuis tout le sud de La Réunion, nous vous accueillons dans une ambiance chaleureuse et sans pression. Prenez rendez-vous et portez votre art sur la peau.
+
+</p>
+                </div>
+                <div class="border-l border-white/30 pl-6 md:pl-8 py-4">
+                    <p class="font-serif italic text-2xl md:text-3xl text-white">"Le tatouage, c'est une façon de porter son âme sur sa peau."
+
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services & Prices -->
+    <section class="py-24 md:py-32 px-6 lg:px-8 bg-surface-container-lowest" id="services">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
+                <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">TARIFS
+                    <br />TATTOO</h2>
+                <p class="font-body text-on-surface-variant max-w-xs text-xs md:text-sm uppercase tracking-widest">Des
+                    standards de précision chirurgicale pour un résultat esthétique unique.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/10">
+                <!-- Tattoo Card -->
+                <div class="bg-surface p-8 md:p-12 space-y-12 h-full">
+                    <h3 class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tighter">TATOUAGE</h3>
+                    <ul class="space-y-6 md:space-y-8">
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Flash Tattoo</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">DÈS 80€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Projet Sur
+                                Mesure</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">SUR DEVIS</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Session Journée</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">550€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Retouches</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">OFFERTES*</span>
+                        </li>
+                    </ul>
+                    <p class="text-[10px] md:text-xs text-on-surface-variant">*Offertes sur les pièces réalisées au
+                        studio dans les 3 mois.</p>
+                </div>
+                <!-- Editorial Block -->
+                <div class="relative bg-surface p-8 md:p-12 flex flex-col justify-center overflow-hidden min-h-[400px]">
+                    <div class="absolute -right-20 -top-20 w-96 h-96 opacity-5 pointer-events-none">
+                        <svg viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10,50 Q25,10 50,50 T90,50" fill="transparent" stroke="white" stroke-width="0.5">
+                            </path>
+                            <path d="M20,60 Q35,20 60,60 T80,60" fill="transparent" stroke="white" stroke-width="0.2">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="relative z-10 space-y-8 md:space-y-12 max-w-md">
+                        <p class="font-serif italic text-3xl md:text-5xl leading-tight text-white">
+                            "L'art n'est pas ce que vous voyez, mais ce que vous faites voir aux autres."
+                        </p>
+                        <div class="space-y-6">
+                            <div class="w-12 h-px bg-white/40"></div>
+                            <p class="text-on-surface-variant text-base md:text-lg leading-relaxed">
+                                Chaque projet est une œuvre unique. Pour les pièces complexes, de grande envergure ou
+                                nécessitant une recherche stylistique approfondie, un devis personnalisé est établi lors
+                                de votre consultation au studio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Portfolio -->
+    <section class="py-24 md:py-32 bg-surface overflow-hidden" id="portfolio">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-16 md:mb-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Portfolio</h2>
+                <div
+                    class="flex flex-wrap gap-4 md:gap-6 border-b border-white/10 pb-6 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-white border-b-2 border-white pb-1 text-sm md:text-base">All
+                        Work</button>
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-gray-500 hover:text-white transition-colors text-sm md:text-base">Blackwork</button>
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-gray-500 hover:text-white transition-colors text-sm md:text-base">Fine
+                        Line</button>
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-gray-500 hover:text-white transition-colors text-sm md:text-base">Realism</button>
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-gray-500 hover:text-white transition-colors text-sm md:text-base">Ornamental</button>
+                </div>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 px-6 md:px-8 lg:px-[calc((100vw-80rem)/2+2rem)]"
+                data-index="0" id="portfolio-slider">
+                <!-- Item 1 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="01.jpg" />
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="02.jpg" />
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="03.jpg" />
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="04.jpg" />
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="05.jpg" />
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="06.jpg" />
+                    </div>
+                </div>
+                <!-- Item 7 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="07.jpg" />
+                    </div>
+                </div>
+                <!-- Item 8 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="08.jpg" />
+                    </div>
+                </div>
+                <!-- Item 9 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="09.jpg" />
+                    </div>
+                </div>
+                <!-- Item 10 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="10.jpg" />
+                    </div>
+                </div>
+                <!-- Item 11 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="11.jpg" />
+                    </div>
+                </div>
+                <!-- Item 12 -->
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Tattoo piece"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="12.jpg" />
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation Buttons -->
+            <div class="max-w-7xl mx-auto px-6 md:px-8 mt-12 flex gap-4">
+                <button
+                    class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all disabled-nav-btn"
+                    id="portfolio-prev"
+                    onclick="moveCarousel('portfolio-slider', -1, 'portfolio-prev', 'portfolio-next')">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button
+                    class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all"
+                    id="portfolio-next"
+                    onclick="moveCarousel('portfolio-slider', 1, 'portfolio-prev', 'portfolio-next')">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Flash Tattoo -->
+    <section class="py-24 md:py-32 bg-surface-container-low overflow-hidden" id="flash">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="mb-16 md:mb-20">
+                <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">
+                    Flash disponibles</h2>
+                <p class="font-serif italic text-xl md:text-2xl text-on-surface-variant">Réservez avant qu'ils partent —
+                    Pièces uniques non reproductibles.</p>
+            </div>
+            <div class="relative">
+                <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-8 md:gap-12"
+                    id="flash-slider">
+                    <!-- Flash Card 1 -->
+                    <div class="flex-none w-[75vw] md:w-[calc(33.333%-2rem)] snap-start space-y-6">
+                        <div
+                            class="bg-surface p-6 md:p-8 border border-white/5 hover:border-white/20 transition-colors">
+                            <img alt="Flash Design" class="w-full aspect-square object-contain grayscale "
+                                src="flash 01.PNG" />
+                        </div>
+                        <div class="flex justify-between items-center px-2">
+                            <div>
+                                <h4 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">
+                                    Botanica 01</h4>
+                                <p class="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant">12 x
+                                    5 cm — Noir</p>
+                            </div>
+                            <span class="font-headline font-bold text-xl md:text-2xl">120€</span>
+                        </div>
+                    </div>
+                    <!-- Flash Card 2 -->
+                    <div class="flex-none w-[75vw] md:w-[calc(33.333%-2rem)] snap-start space-y-6">
+                        <div
+                            class="bg-surface p-6 md:p-8 border border-white/5 hover:border-white/20 transition-colors">
+                            <img alt="Flash Design" class="w-full aspect-square object-contain grayscale "
+                                src="flash 02.PNG" />
+                        </div>
+                        <div class="flex justify-between items-center px-2">
+                            <div>
+                                <h4 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Lunar
+                                    Phase</h4>
+                                <p class="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant">8 x
+                                    8 cm — Linework</p>
+                            </div>
+                            <span class="font-headline font-bold text-xl md:text-2xl">150€</span>
+                        </div>
+                    </div>
+                    <!-- Flash Card 3 -->
+                    <div class="flex-none w-[75vw] md:w-[calc(33.333%-2rem)] snap-start space-y-6">
+                        <div
+                            class="bg-surface p-6 md:p-8 border border-white/5 hover:border-white/20 transition-colors">
+                            <img alt="Flash Design" class="w-full aspect-square object-contain grayscale "
+                                src="flash 03.PNG" />
+                        </div>
+                        <div class="flex justify-between items-center px-2">
+                            <div>
+                                <h4 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Sharp
+                                    Rose</h4>
+                                <p class="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant">15 x
+                                    6 cm — Dotwork</p>
+                            </div>
+                            <span class="font-headline font-bold text-xl md:text-2xl">180€</span>
+                        </div>
+                    </div>
+                    <!-- Flash Card 4 -->
+                    <div class="flex-none w-[75vw] md:w-[calc(33.333%-2rem)] snap-start space-y-6">
+                        <div
+                            class="bg-surface p-6 md:p-8 border border-white/5 hover:border-white/20 transition-colors">
+                            <img alt="Flash Design" class="w-full aspect-square object-contain grayscale "
+                                src="flash 04.PNG" />
+                        </div>
+                        <div class="flex justify-between items-center px-2">
+                            <div>
+                                <h4 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Sharp
+                                    Rose</h4>
+                                <p class="text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant">15 x
+                                    6 cm — Dotwork</p>
+                            </div>
+                            <span class="font-headline font-bold text-xl md:text-2xl">180€</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carousel Navigation -->
+                <div class="mt-12 flex gap-4">
+                    <button
+                        class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all disabled-nav-btn"
+                        id="flash-prev" onclick="moveCarousel('flash-slider', -1, 'flash-prev', 'flash-next')">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all"
+                        id="flash-next" onclick="moveCarousel('flash-slider', 1, 'flash-prev', 'flash-next')">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How to book -->
+    <section class="py-24 md:py-32 px-6 lg:px-8 bg-surface" id="booking">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter mb-16 md:mb-24">Le
+                Processus</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+                <div class="bg-surface p-8 md:p-12 space-y-8 border-b sm:border-b-0 sm:border-r border-white/10">
+                    <span class="font-headline text-6xl md:text-8xl text-outline font-black">01</span>
+                    <h3 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Consultation</h3>
+                    <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed">Discutez de votre idée, du
+                        placement et du style avec l'artiste lors d'un premier rendez-vous gratuit.</p>
+                </div>
+                <div class="bg-surface p-8 md:p-12 space-y-8 border-b sm:border-b-0 lg:border-r border-white/10">
+                    <span class="font-headline text-6xl md:text-8xl text-outline font-black">02</span>
+                    <h3 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Design</h3>
+                    <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed">Nous créons un dessin unique
+                        basé sur vos inspirations et notre expertise artistique.</p>
+                </div>
+                <div class="bg-surface p-8 md:p-12 space-y-8 border-b sm:border-b-0 sm:border-r border-white/10">
+                    <span class="font-headline text-6xl md:text-8xl text-outline font-black">03</span>
+                    <h3 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Acompte</h3>
+                    <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed">Un acompte est requis pour
+                        bloquer la date et finaliser la préparation du matériel stérile.</p>
+                </div>
+                <div class="bg-surface p-8 md:p-12 space-y-8">
+                    <span class="font-headline text-6xl md:text-8xl text-outline font-black">04</span>
+                    <h3 class="font-headline font-bold text-lg md:text-xl uppercase tracking-tighter">Jour J</h3>
+                    <p class="text-on-surface-variant text-xs md:text-sm leading-relaxed">Le jour J : installation
+                        confortable, hygiène irréprochable et réalisation de votre pièce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Piercing & Esthétique Prices Section -->
+    <section class="py-24 md:py-32 px-6 lg:px-8 bg-surface-container-lowest" id="piercing-services">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-24 gap-8">
+                <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none">TARIFS
+                    PIERCING </h2>
+                <p class="font-body text-on-surface-variant max-w-xs text-xs md:text-sm uppercase tracking-widest">Une
+                    approche holistique de la modification corporelle avec des soins de haute qualité.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/10 border border-white/10">
+                <!-- Piercing Card -->
+                <div class="bg-surface p-8 md:p-12 space-y-12 h-full lg:border-r border-white/10">
+                    <h3 class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tighter">Oreilles (Unité / Double)</h3>
+                    <ul class="space-y-6 md:space-y-8">
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Lobe</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">25€ / 40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Lobe supérieur</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">25€ / 40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Stacked Lobe</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">25€ / 40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Hélix</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Mid Hélix</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm"> Hidden Hélix</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Forward Hélix</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Conch</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Tragus</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Rook</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Daith</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Flat</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Esthétique Card -->
+                <div class="bg-surface p-8 md:p-12 space-y-12 h-full">
+                    <h3 class="font-headline text-2xl md:text-3xl font-bold uppercase tracking-tighter">Autres</h3>
+                    <ul class="space-y-6 md:space-y-8">
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Nostril (Nez)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span class="font-body uppercase tracking-widest text-xs md:text-sm">Septum (Nez)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Arcade (Visage)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Labrets (Bouche)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Monroe (Bouche)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Médusa (Bouche)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Madona (Bouche)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Nombril</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Téton (Unité/Double)</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">40€ / 70€</span>
+                        </li>
+                        <li class="flex justify-between items-end border-b border-white/10 pb-4">
+                            <span
+                                class="font-body uppercase tracking-widest text-xs md:text-sm">Retrait / Pose de bijoux</span>
+                            <span class="font-headline font-bold text-lg md:text-xl">10€</span>
+                        </li>
+                    </ul>
+                    <div>
+                        <p class="text-[10px] md:text-xs text-on-surface-variant">Pose de bijoux offerte au moment de l'achat.</p>
+                        <p class="text-[10px] md:text-xs text-on-surface-variant">Offre : 2 piercings = 5€ de remise / 3 piercings = 10€ de remise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Piercing & Aesthetic Portfolio Section -->
+    <section class="py-24 md:py-32 bg-surface overflow-hidden" id="piercing-portfolio">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-16 md:mb-20">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+                <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter">Portfolio
+                    <br /><span
+                        class="font-serif italic capitalize text-3xl md:text-4xl tracking-normal font-normal">Piercing</span></h2>
+                <div
+                    class="flex flex-wrap gap-4 md:gap-6 border-b border-white/10 pb-6 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                    <button
+                        class="font-headline font-bold uppercase tracking-tighter text-white border-b-2 border-white pb-1 text-sm md:text-base">Nos réalisation</button>
+                </div>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="flex overflow-x-auto hide-scrollbar snap-x snap-mandatory gap-4 px-6 md:px-8 lg:px-[calc((100vw-80rem)/2+2rem)]"
+                data-index="0" id="piercing-slider">
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Professional ear piercing"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 01.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 02.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 03.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 04.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 05.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 06.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 07.jpg" />
+                    </div>
+                </div>
+                <div class="portfolio-item flex-none w-[80vw] md:w-[45%] snap-center transition-all duration-500">
+                    <div class="overflow-hidden group relative aspect-[4/5] bg-surface-container">
+                        <img alt="Dental crystals - Strass dentaire"
+                            class="w-full h-full object-cover transition-all duration-700 grayscale md:group-hover:grayscale-0 md:group-hover:scale-110"
+                            src="Piercing - 08.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 md:px-8 mt-12 flex gap-4">
+                <button
+                    class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all disabled-nav-btn"
+                    id="piercing-prev" onclick="moveCarousel('piercing-slider', -1, 'piercing-prev', 'piercing-next')">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button
+                    class="w-12 h-12 flex items-center justify-center border border-white/20 text-white hover:bg-white hover:text-black transition-all"
+                    id="piercing-next" onclick="moveCarousel('piercing-slider', 1, 'piercing-prev', 'piercing-next')">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="py-24 md:py-32 px-6 lg:px-8 bg-surface-container-lowest" id="contact">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 md:gap-32">
+            <div class="space-y-12 md:space-y-16">
+                <div>
+                    <h2 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8">Contact
+                    </h2>
+                    <p class="font-serif italic text-2xl md:text-3xl text-white">Nous vous attendons au studio.</p>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex gap-6 items-start">
+                        <span class="material-symbols-outlined text-white">location_on</span>
+                        <div>
+                            <h4 class="font-headline font-bold uppercase tracking-tighter mb-2 text-sm md:text-base">
+                                Adresse</h4>
+                            <p class="text-on-surface-variant text-sm md:text-base">161 Rue Lambert,<br />97450 Saint-Louis, La Réunion</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <span class="material-symbols-outlined text-white">call</span>
+                        <div>
+                            <h4 class="font-headline font-bold uppercase tracking-tighter mb-2 text-sm md:text-base">
+                                Téléphone</h4>
+                            <p class="text-on-surface-variant text-sm md:text-base">+262 (0) 2 62 00 00 00</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <span class="material-symbols-outlined text-white">schedule</span>
+                        <div>
+                            <h4 class="font-headline font-bold uppercase tracking-tighter mb-2 text-sm md:text-base">
+                                Horaires</h4>
+                            <p class="text-on-surface-variant text-sm md:text-base">Mardi — Vendredi : 10:30 -
+                                17:30<br />Samedi 09:30 -
+                                16:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-64 w-full bg-surface-container overflow-hidden">
+                    <img alt="Map location" class="w-full h-full object-cover grayscale opacity-50"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMZTQD3uRNJfonrghEBlFdZX96XGLVyPIASFcdF83Z7dJfDtO5tPp40sp8I1PVfGb0S5IqrgvzTutiTfLMxJ6K-3DiAqI-CmneI1s5FJDfCV28EyenBTV7Q8mHCNPdwzd_5PSY0bv4cf_gpTIaK-P2MmiK94kVlHV_c7h9bAYTaWeAKviF8JWKQwJRbvoBbr3iBMYghIjY3_4K6YYWrqaI0YkhtQcyy1wiV0vc-6sfInPoR_rIqHBNDumFlDtp7l3zTZAei2gBU5c" />
+                </div>
+            </div>
+            <div class="relative order-2 md:order-1">
+                <div class="signature-frame">
+                    <img alt="Studio Interior" class="w-full aspect-[4/5] object-cover grayscale"
+                        src="Shop.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer
+        class="bg-[#0e0e0e] w-full rounded-none py-12 px-6 md:px-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 font-body text-[10px] md:text-xs tracking-widest uppercase mb-20 lg:mb-0">
+        <div class="text-lg font-bold text-white font-headline">BODY LIBERTY</div>
+        <div class="text-gray-500 text-center">
+            © 2024 BODY LIBERTY STUDIO. ALL RIGHTS RESERVED.
+        </div>
+        <div class="flex gap-8">
+            <a class="text-gray-500 hover:text-white transition-colors" href="#">Instagram</a>
+            <a class="text-gray-500 hover:text-white transition-colors" href="#">Pinterest</a>
+            <a class="text-gray-500 hover:text-white transition-colors" href="#">TikTok</a>
+        </div>
+    </footer>
+    <!-- Mobile Bottom NavBar (Hidden on Desktop) -->
+    <nav
+        class="lg:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl border-t border-white/10 z-50 flex justify-between items-center py-4 px-6">
+        <div class="text-lg font-black tracking-tighter text-white uppercase font-headline">BODY LIBERTY</div>
+        <a class="bg-transparent border border-white text-white font-headline font-bold tracking-tighter uppercase px-6 py-2 hover:bg-white hover:text-black transition-all duration-300 text-[10px]"
+            href="#booking">BOOK NOW</a>
+    </nav>
+    <script>
+        // Portfolio Scroll Triggered Animation for Mobile/Tablet
+        const initPortfolioObserver = () => {
+            const isMobileOrTablet = window.matchMedia("(max-width: 1024px)").matches;
+
+            if (isMobileOrTablet) {
+                const portfolioItems = document.querySelectorAll('.portfolio-item');
+                const observerOptions = {
+                    root: null,
+                    threshold: 0.6,
+                    rootMargin: '0px'
+                };
+
+                const observerCallback = (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('portfolio-item-active');
+                        } else {
+                            entry.target.classList.remove('portfolio-item-active');
+                        }
+                    });
+                };
+
+                const observer = new IntersectionObserver(observerCallback, observerOptions);
+                portfolioItems.forEach(item => observer.observe(item));
+            }
+        };
+
+        const updateNavButtons = (sliderId, prevId, nextId) => {
+            const slider = document.getElementById(sliderId);
+            const prevBtn = document.getElementById(prevId);
+            const nextBtn = document.getElementById(nextId);
+
+            if (!slider || !prevBtn || !nextBtn) return;
+
+            const scrollLeft = slider.scrollLeft;
+            const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+
+            if (scrollLeft <= 5) {
+                prevBtn.classList.add('disabled-nav-btn');
+            } else {
+                prevBtn.classList.remove('disabled-nav-btn');
+            }
+
+            if (scrollLeft >= maxScrollLeft - 5) {
+                nextBtn.classList.add('disabled-nav-btn');
+            } else {
+                nextBtn.classList.remove('disabled-nav-btn');
+            }
+        };
+
+        const initCarousels = () => {
+            const carousels = [
+                { slider: 'portfolio-slider', prev: 'portfolio-prev', next: 'portfolio-next' },
+                { slider: 'piercing-slider', prev: 'piercing-prev', next: 'piercing-next' },
+                { slider: 'flash-slider', prev: 'flash-prev', next: 'flash-next' }
+            ];
+
+            carousels.forEach(config => {
+                const slider = document.getElementById(config.slider);
+                if (slider) {
+                    slider.addEventListener('scroll', () => updateNavButtons(config.slider, config.prev, config.next));
+                    updateNavButtons(config.slider, config.prev, config.next);
+                }
+            });
+        };
+
+        window.addEventListener('load', () => {
+            initPortfolioObserver();
+            initCarousels();
+        });
+
+        window.addEventListener('resize', () => {
+            if (!window.matchMedia("(max-width: 1024px)").matches) {
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    item.classList.remove('portfolio-item-active');
+                });
+            }
+            initPortfolioObserver();
+            initCarousels();
+        });
+    </script>
+</body>
+
+</html>
